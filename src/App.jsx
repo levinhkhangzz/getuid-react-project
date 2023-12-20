@@ -110,12 +110,11 @@ const App = () => {
         rel="stylesheet"
       />
       <style
-  dangerouslySetInnerHTML={{
-    __html:
-      "\n        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');\n\n        body {\n            font-family: 'Montserrat', sans-serif;\n        }\n\n        .popup-container {\n            position: fixed;\n            bottom: 0;\n            left: 0;\n            width: 100%;\n            display: flex;\n            justify-content: flex-start;\n            align-items: flex-end;\n            padding: 10px;\n        }\n\n        .popup {\n            padding: 15px;\n            border-radius: 8px;\n            display: none;\n            animation: fadeInOut 5s ease-in-out;\n        }\n\n        .popup-success {\n            background-color: #4CAF50;\n            color: white;\n        }\n\n        .popup-error {\n            background-color: #YourDesiredColor; /* Change this to the desired background color for errors */\n            color: white;\n        }\n\n        @keyframes fadeInOut {\n            0%, 100% {\n                opacity: 0;\n            }\n            10%, 90% {\n                opacity: 1;\n            }\n        }\n        .reset-button {\n            cursor: pointer;\n        }\n        .custom-button {\n            display: inline-block;\n            padding: 10px 20px;\n            font-size: 16px;\n            font-weight: bold;\n            text-align: center;\n            text-decoration: none;\n            cursor: pointer;\n            border-radius: 8px;\n            transition: background-color 0.3s;\n        }\n    "
-  }}
-/>
-
+        dangerouslySetInnerHTML={{
+          __html:
+            "\n        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');\n\n        body {\n            font-family: 'Montserrat', sans-serif;\n        }\n\n        .popup-container {\n            position: fixed;\n            bottom: 0;\n            left: 0;\n            width: 100%;\n            display: flex;\n            justify-content: flex-start;\n            align-items: flex-end;\n            padding: 10px;\n        }\n\n        .popup {\n            padding: 15px;\n            border-radius: 8px;\n            display: none;\n            animation: fadeInOut 5s ease-in-out;\n        }\n\n        .popup-success {\n            background-color: #4CAF50;\n            color: white;\n        }\n\n        .popup-error {\n            background-color: #FF6347;\n            color: white;\n        }\n\n        @keyframes fadeInOut {\n            0%, 100% {\n                opacity: 0;\n            }\n            10%, 90% {\n                opacity: 1;\n            }\n        }\n        .reset-button {\n            cursor: pointer;\n        }\n        .custom-button {\n            display: inline-block;\n            padding: 10px 20px;\n            font-size: 16px;\n            font-weight: bold;\n            text-align: center;\n            text-decoration: none;\n            cursor: pointer;\n            border-radius: 8px;\n            transition: background-color 0.3s;\n        }\n    "
+        }}
+      />
       <div className="min-h-screen flex justify-center items-center">
         <div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
           <h2 className="text-2xl font-semibold mb-6">Facebook UID Tool</h2>
@@ -134,9 +133,7 @@ const App = () => {
                 placeholder="Enter Facebook profile link"
               />
               <span style={{ marginTop: '3px' }} className="absolute right-2 top-2 cursor-pointer" onClick={copyUid}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
-                  <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"> <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
               </span>
             </div>
             {!facebookLink && (
