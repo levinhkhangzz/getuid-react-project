@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './facebookUidTool.css'; // Import any necessary CSS file
+
 const App = () => {
   const [facebookLink, setFacebookLink] = useState('');
   const [loading, setLoading] = useState(false);
@@ -106,11 +107,6 @@ const App = () => {
     }
   };
 
-  const copyUid = () => {
-    navigator.clipboard.writeText(facebookLink);
-    showPopup('UID copied to clipboard: ' + facebookLink);
-  };
-
   return (
     <>
       <link
@@ -140,9 +136,6 @@ const App = () => {
                 onChange={(e) => setFacebookLink(e.target.value)}
                 placeholder="Enter Facebook profile link"
               />
-              <span style={{ marginTop: '3px' }} className="absolute right-2 top-2 cursor-pointer" onClick={copyUid}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"> <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
-              </span>
             </div>
             {!facebookLink && (
               <div className="text-red-500 text-sm mb-2">Hãy nhập link Facebook</div>
@@ -157,15 +150,6 @@ const App = () => {
             >
               {loading ? 'Loading...' : 'Get UID'}
             </button>
-
-            {uidResult && (
-              <button
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
-                onClick={copyUid}
-              >
-                Copy UID
-              </button>
-            )}
           </div>
 
           {uidResult && (
@@ -189,7 +173,7 @@ const App = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
