@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './facebookUidTool.css'; // Import any necessary CSS file
+
 const App = () => {
   const [facebookLink, setFacebookLink] = useState('');
   const [loading, setLoading] = useState(false);
-  const [uidResult, setUidResult] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
   const [popupVisible, setPopupVisible] = useState(false);
 
   const showPopup = (message) => {
-
+    setPopupMessage(message);
+    setPopupVisible(true);
     setTimeout(() => {
       hidePopup();
     }, 5000);
@@ -20,7 +21,6 @@ const App = () => {
 
   const getUid = () => {
     setLoading(true);
-    setUidResult('');
 
     if (facebookLink.startsWith('https://fb.com/')) {
       const correctedLink = facebookLink.replace('https://fb.com/', 'https://facebook.com/');
@@ -37,13 +37,11 @@ const App = () => {
             setFacebookLink(data.uid);
             showPopup('UID Obtained Successfully!');
           } else {
-            setUidResult('Error: UID not found in the response');
             showPopup('Error: UID not found or an API error occurred.');
           }
         })
         .catch((error) => {
           setLoading(false);
-          setUidResult(`Error: ${error.message}`);
           showPopup('Error: ' + error.message);
         });
     } else {
@@ -62,13 +60,11 @@ const App = () => {
               setFacebookLink(data.uid);
               showPopup('UID Obtained Successfully!');
             } else {
-              setUidResult('Error: UID not found in the response');
               showPopup('Error: UID not found or an API error occurred.');
             }
           })
           .catch((error) => {
             setLoading(false);
-            setUidResult(`Error: ${error.message}`);
             showPopup('Error: ' + error.message);
           });
       } else {
@@ -87,18 +83,15 @@ const App = () => {
                 setFacebookLink(data.uid);
                 showPopup('UID Obtained Successfully!');
               } else {
-                setUidResult('Error: UID not found in the response');
                 showPopup('Error: UID not found or an API error occurred.');
               }
             })
             .catch((error) => {
               setLoading(false);
-              setUidResult(`Error: ${error.message}`);
               showPopup('Error: ' + error.message);
             });
         } else {
           setLoading(false);
-          setUidResult('Error: Invalid input format');
           showPopup('Error: Invalid input format. Please enter a valid Facebook profile link.');
         }
       }
@@ -134,14 +127,15 @@ const App = () => {
               <input
                 type="text"
                 id="facebookLink"
-                required
                 className="w-full p-2 border rounded-md"
                 value={facebookLink}
                 onChange={(e) => setFacebookLink(e.target.value)}
                 placeholder="Enter Facebook profile link"
               />
               <span style={{ marginTop: '3px' }} className="absolute right-2 top-2 cursor-pointer" onClick={copyUid}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"> <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                  <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
+                </svg>
               </span>
             </div>
             {!facebookLink && (
@@ -151,17 +145,13 @@ const App = () => {
 
           <div className="flex items-center justify-between mb-6">
             <button
-              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={getUid}
               disabled={loading}
             >
               {loading ? 'Loading...' : 'Get UID'}
             </button>
-
-
           </div>
-
-
 
           {popupVisible && (
             <div className="bg-blue-100 text-blue-900 px-4 py-2 rounded-md mb-4">{popupMessage}</div>
@@ -169,7 +159,7 @@ const App = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
